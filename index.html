@@ -1,0 +1,210 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <nav>
+        <span>
+            <img src="wallet.png" class="nav_logo" />
+            <p>Personal Finance Tracker</p>
+        </span>
+        <span>
+            <img src="calender.png" class="nav_logo" />
+            <p id="current-date">updating date...</p>
+        </span>
+
+    </nav>
+    <div class="dashboard-cards">
+
+        <div class="card balance">
+            Total Balance
+            <h3 id="total-balance">₹0</h3>
+        </div>
+
+        <div class="card income">
+            Total Income
+            <h3 id="total-income">₹0</h3>
+        </div>
+
+        <div class="card expense">
+            Total Expenditure
+            <h3 id="total-expenditure">₹0</h3>
+        </div>
+
+        <div class="card transactions">
+            Total Transactions
+            <h3 id="total-transactions">0</h3>
+        </div>
+
+    </div>
+    <div class="display-elements">
+        <form class="transaction-form" onsubmit="return add_transaction(event)">
+
+            <h2>Add Transaction</h2>
+
+            <div class="form-container">
+
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input id="amount" type="number" placeholder="Enter amount" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="type">Type</label>
+
+                    <select id="type" required>
+                        <option value="">Select.. </option>
+                        <option value="Income">Income</option>
+                        <option value="Expense">Expense</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+
+                    <select id="category" required>
+                        <option value="">Select Category</option>
+                        <option value="Salary">Salary</option>
+                        <option value="Freelancing">Freelancing</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Bills">Bills</option>
+                        <option value="Food">Food</option>
+                        <option value="Travel">Travel</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input id="date" type="date" required>
+                </div>
+
+                <div class="form-group description-group">
+                    <label for="description">Description</label>
+
+                    <textarea id="description" placeholder="Enter description" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <button class="add-btn" type="submit">
+                        + Add Transaction
+                    </button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+    <div class="display-elements">
+
+        <form action="" class="search-form">
+            <h2>Search Transactions</h2>
+            <div class="search-form-group">
+                <input type="search" id="search" placeholder="Search by description">
+                <!-- <button class="search-btn" type="submit">Search</button> -->
+            </div>
+        </form>
+    </div>
+    <div class="display-elements table-element">
+        <h2>Transactions</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+
+
+        </table>
+    </div>
+
+
+    <dialog id="customAlert">
+        <p id="alertMessage"></p>
+        <button onclick="closeAlert()">OK</button>
+    </dialog>
+
+
+
+    <dialog id="deleteAlert">
+        <p>Are you sure want to delete this transaction?</p>
+        <button onclick="closeDelete()">Cancel</button>
+        <button onclick="confirmDelete()">Delete</button>
+    </dialog>
+
+    <dialog id="editModal">
+        <h3>Edit Transaction</h3>
+        <div class="form-container">
+
+            <div class="form-group">
+                <label for="edit-amount">Amount</label>
+                <input id="edit-amount" type="number" placeholder="Enter amount" required>
+            </div>
+
+            <div class="form-group">
+                <label for="edit-type">Type</label>
+
+                <select id="edit-type" required>
+                    <option value="">Select.. </option>
+                    <option value="Income">Income</option>
+                    <option value="Expense">Expense</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="edit-category">Category</label>
+
+                <select id="edit-category" required>
+                    <option value="">Select Category</option>
+                    <option value="Salary">Salary</option>
+                    <option value="Freelancing">Freelancing</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Food">Food</option>
+                    <option value="Travel">Travel</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="edit-date">Date</label>
+                <input id="edit-date" type="date" required>
+            </div>
+
+            <div class="form-group description-group">
+                <label for="edit-description">Description</label>
+
+                <textarea id="edit-description" placeholder="Enter description" required></textarea>
+            </div>
+
+            <!-- <div class="form-group">
+                <button class="add-btn" onclick="confirmEdit()">Edit</button>
+            </div> -->
+
+        </div>
+        <button onclick="updateTransaction()">Edit</button>
+        <button onclick="closeEdit()">Cancel</button>
+
+    </dialog>
+
+    <footer>
+        <!-- Footer content stays at the bottom -->
+        <p>&copy; 2026 Personal Finance Tracker. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
